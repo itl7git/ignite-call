@@ -4,6 +4,8 @@ import { ArrowRight } from '@phosphor-icons/react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 const registerFormSchema = z.object({
   username: z
@@ -25,9 +27,18 @@ export default function Register() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    setValue,
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerFormSchema),
   })
+
+  const router = useRouter()
+
+  useEffect(() => {
+    if (router.query?.username) {
+      setValue('username', String(router.query?.username))
+    }
+  }, [router.query?.username, setValue])
 
   async function handleRegister(data: RegisterFormData) {
     console.log(data)
@@ -49,7 +60,7 @@ export default function Register() {
         <label>
           <Text size="sm">Nome do usuário</Text>
           <TextInput
-            prefix="/ignite.com"
+            prefix="ignite.com/"
             placeholder="seu-usuario"
             crossOrigin=""
             {...register('username')}
@@ -73,7 +84,7 @@ export default function Register() {
           )}
         </label>
 
-        <Button type="submit">
+        <Button type="submit" disabled={isSubmitting}>
           Proximo passo
           <ArrowRight />
         </Button>
