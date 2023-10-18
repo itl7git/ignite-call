@@ -6,8 +6,7 @@ import {
   TimepickerItem,
   TimepickerList,
 } from './styles'
-import { useEffect, useState } from 'react'
-import { date } from 'zod'
+import { useState } from 'react'
 import dayjs from 'dayjs'
 import { api } from '@/lib/axios'
 import { useRouter } from 'next/router'
