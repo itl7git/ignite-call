@@ -42,5 +42,7 @@ export default async function handler(
     )
   })
 
+  // const blockedDatesRaw = await prisma.$queryRaw
+
   return res.json({ blockedWeekDays })
 }
