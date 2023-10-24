@@ -4,9 +4,6 @@
     "next/core-web-vitals"
   ],
   "rules": {
-    "camelcase": "off",
-    "@typescript-eslint/camelcase": [
-      "off"
-    ]
+    "camelcase": "off"
   }
 }
